@@ -2,23 +2,19 @@ variable "google" {
   type = "map"
 
   default = {
-    project = ""
-    region  = "europe-west2"
+    project          = ""
+    region           = "europe-west2"
+    zone             = "europe-west2-a"
+    vpcNetworkName   = "ksp-network"
+    extIpAddressName = "ks-ext-ip-address"
   }
 }
 
-variable "gcp_ip_cidr_range" {
-  default     = "10.0.1.0/24"
-  type        = "string"
-  description = "gcp subnet ip range"
-}
-
-variable "gcp_subnet_names" {
+variable "gcp-kubepro-subnet1" {
   type = "map"
 
   default = {
-    subnet1 = "devsubnet"
-    subnet2 = "devtwosubnet"
-    subnet3 = "devthreesubnet"
+    name          = "ks-subnet1"
+    ip_cidr_range = "10.240.0.0/24"
   }
 }

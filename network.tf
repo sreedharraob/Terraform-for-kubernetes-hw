@@ -1,4 +1,4 @@
-resource "google_compute_network" "google-dev-network-example-1" {
-  name                    = "kubesree-network"
+resource "google_compute_network" "gcp-kubepro-network" {
+  name                    = "${var.google["vpcNetworkName"]}"
   auto_create_subnetworks = false
 }
