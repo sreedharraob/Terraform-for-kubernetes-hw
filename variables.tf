@@ -8,8 +8,8 @@ variable "google" {
     vpcNetworkName           = "ks-network"
     extIpAddressName         = "ks-ext-ip-address"
     controllerInstanceSize   = "n1-standard-1"
-    controlPlaneInstanceName = "ks-controlplane-instance"
-    workerInstanceName       = "ks-workernode"
+    controlPlaneInstanceName = "ks-controller"
+    workerInstanceName       = "ks-worker"
     workerInstanceSize       = "n1-standard-1"
   }
 }
