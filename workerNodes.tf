@@ -1,7 +1,7 @@
 resource "google_compute_instance" "gcp-kubepro-worker-instances" {
   count          = 3
-  name           = "${var.google["workerInstanceName"]}-${count.index}"
-  machine_type   = "${var.google["workerInstanceSize"]}"
+  name           = "${var.google["workerNodeName"]}-${count.index}"
+  machine_type   = "${var.google["workerNodeSize"]}"
   zone           = "${var.google["zone"]}"
   can_ip_forward = true
   tags           = ["kubernetes-hw", "worker"]
@@ -12,11 +12,11 @@ resource "google_compute_instance" "gcp-kubepro-worker-instances" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-os-cloud/ubuntu-1804-lts"
-      size  = "200"
+      image = "${var.google["workerNodeImage"]}"
+      size  = "${var.google["workerNodeDiskSize"]}"
     }
 
-    device_name = "kube-workernode-disk-${count.index}"
+    device_name = "kube-workerNode-disk-${count.index}"
   }
 
   network_interface {

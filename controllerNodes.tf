@@ -1,7 +1,7 @@
 resource "google_compute_instance" "gcp-kubepro-controlplane-instances" {
   count          = 3
-  name           = "${var.google["controlPlaneInstanceName"]}-${count.index}"
-  machine_type   = "${var.google["controllerInstanceSize"]}"
+  name           = "${var.google["controllerNodeName"]}-${count.index}"
+  machine_type   = "${var.google["controllerNodeSize"]}"
   zone           = "${var.google["zone"]}"
   can_ip_forward = true
   tags           = ["kubernetes-hw", "controller"]
@@ -12,11 +12,11 @@ resource "google_compute_instance" "gcp-kubepro-controlplane-instances" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-os-cloud/ubuntu-1804-lts"
-      size  = "200"
+      image = "${var.google["controllerNodeImage"]}"
+      size  = "${var.google["controllerNodeDiskSize"]}"
     }
 
-    device_name = "kube-controlplane-disk-${count.index}"
+    device_name = "kube-controllerNode-disk-${count.index}"
   }
 
   network_interface {
